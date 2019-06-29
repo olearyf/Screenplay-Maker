@@ -4,6 +4,7 @@ import javax.swing.plaf.metal.OceanTheme;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -81,11 +82,65 @@ class ScreenplayMaker extends JFrame implements ActionListener {
         mi11 = new JMenuItem("Character");
         mi12 = new JMenuItem("Dialogue");
 
-        mi8.addActionListener(this);
-        mi9.addActionListener(this);
-        mi10.addActionListener(this);
-        mi11.addActionListener(this);
-        mi12.addActionListener(this);
+        mi8.setMnemonic(KeyEvent.VK_I);
+        mi9.setMnemonic(KeyEvent.VK_E);
+        mi10.setMnemonic(KeyEvent.VK_S);
+        mi11.setMnemonic(KeyEvent.VK_C);
+        mi12.setMnemonic(KeyEvent.VK_D);
+
+        Action intAction = new AbstractAction("INT."){
+            public void actionPerformed(ActionEvent c){
+                //make text uppercase
+                textArea.append("INT. ");
+            }
+        };
+        intAction.putValue(Action.ACCELERATOR_KEY,
+                KeyStroke.getKeyStroke(KeyEvent.VK_I,
+                        KeyEvent.CTRL_DOWN_MASK));
+        mi8.setAction(intAction);
+
+        Action extAction = new AbstractAction("EXT."){
+            public void actionPerformed(ActionEvent c){
+                //make text uppercase
+                textArea.append("EXT. ");
+            }
+        };
+        extAction.putValue(Action.ACCELERATOR_KEY,
+                KeyStroke.getKeyStroke(KeyEvent.VK_E,
+                        KeyEvent.CTRL_DOWN_MASK));
+        mi9.setAction(extAction);
+
+        Action settingAction = new AbstractAction("Setting"){
+            public void actionPerformed(ActionEvent c){
+                //make text lowercase
+                textArea.append("");
+            }
+        };
+        settingAction.putValue(Action.ACCELERATOR_KEY,
+                KeyStroke.getKeyStroke(KeyEvent.VK_S,
+                        KeyEvent.CTRL_DOWN_MASK));
+        mi10.setAction(settingAction);
+
+        Action charAction = new AbstractAction("Character"){
+            public void actionPerformed(ActionEvent c){
+                //center text
+            }
+        };
+        charAction.putValue(Action.ACCELERATOR_KEY,
+                KeyStroke.getKeyStroke(KeyEvent.VK_C,
+                        KeyEvent.CTRL_DOWN_MASK));
+        mi11.setAction(charAction);
+
+        Action dialAction = new AbstractAction("Dialogue"){
+            public void actionPerformed(ActionEvent c){
+                //two tabs in
+            }
+        };
+        dialAction.putValue(Action.ACCELERATOR_KEY,
+                KeyStroke.getKeyStroke(KeyEvent.VK_D,
+                        KeyEvent.CTRL_DOWN_MASK));
+        mi12.setAction(dialAction);
+
 
         m3.add(mi8);
         m3.add(mi9);
